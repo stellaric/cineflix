@@ -1,25 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import Main  from './components/Main'
+import Header from './components/Header'
+import Footer from './components/Footer'
+import Loader from './components/Loader'
 
+//page accueil principale
 function App() {
+
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Effectuez ici des opérations asynchrones, comme le chargement de données depuis une API.
+    // Une fois les données chargées, définissez isLoading sur false pour masquer le loader.
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 2000); // Simule le chargement pendant 2 secondes.
+  }, []);
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <div>
+    {isLoading ? (
+      <Loader/>
+    ) : (
+      <div>
+        <Header />
+        <Main />
+        <Footer/>
+       </div>
+    )}
+  </div>
+  )
 }
 
-export default App;
+export default App
